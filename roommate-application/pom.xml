@@ -164,8 +164,9 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-
         </plugins>
+
+        <finalName>roommate-application</finalName>
     </build>
 
 </project>
