@@ -63,7 +63,7 @@ public class UserControllerImpl implements UserController {
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<OperationResponse<UserDto>> updateUser(@RequestBody UserDto user, @PathVariable String id) {
-        if (Objects.isNull(user) && StringUtils.isEmpty(id))
+        if (StringUtils.isEmpty(id))
             return badRequest;
 
         OperationResponse<UserDto> operationResponse = makeCall(() -> userService.update(mapper.convertDtoToModel(user)));
