@@ -1,7 +1,7 @@
 package com.bh.roommate.application.impl.repository.user;
 
 import com.bh.roommate.application.api.model.User;
-import com.bh.roommate.application.api.model.entity.UserEntity;
+import com.bh.roommate.application.api.model.entity.user.UserEntity;
 import com.bh.roommate.application.api.model.mapper.UserMapper;
 import com.bh.roommate.application.api.repository.user.UserRepository;
 import com.bh.roommate.application.api.repository.RepositoryResponse;

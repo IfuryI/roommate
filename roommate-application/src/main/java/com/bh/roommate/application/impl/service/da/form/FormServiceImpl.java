@@ -1,10 +1,15 @@
-package com.bh.roommate.application.impl.service.da.user;
+package com.bh.roommate.application.impl.service.da.form;
 
+import com.bh.roommate.application.api.model.Form;
 import com.bh.roommate.application.api.model.User;
+import com.bh.roommate.application.api.model.mapper.FormMapper;
 import com.bh.roommate.application.api.model.mapper.UserMapper;
 import com.bh.roommate.application.api.repository.RepositoryResponse;
+import com.bh.roommate.application.api.repository.form.FormRepositoryService;
 import com.bh.roommate.application.api.repository.user.UserRepositoryService;
 import com.bh.roommate.application.api.service.da.OperationResponse;
+import com.bh.roommate.application.api.service.da.form.FormService;
+import com.bh.roommate.application.api.service.da.session.SessionService;
 import com.bh.roommate.application.api.service.da.user.UserService;
 import com.bh.roommate.application.api.status.OperationStatus;
 import com.bh.roommate.application.api.status.ProcessStatus;
@@ -13,54 +18,58 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.io.Serializable;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
-public class UserServiceImpl implements UserService {
+public class FormServiceImpl implements FormService {
 
-    private final UserRepositoryService repository;
-    private final UserMapper mapper;
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final FormRepositoryService repository;
+    private final UserRepositoryService userRepositoryService;
+    private final FormMapper mapper;
+    private final SessionService sessionService;
 
     @Override
-    public OperationResponse<User> delete(@NonNull Long id) {
-        RepositoryResponse<User> response = repository.delete(id);
+    public OperationResponse<Form> delete(@NonNull Long id) {
+        RepositoryResponse<Form> response = repository.delete(id);
 
-        return new OperationResponse<User>(getStatus(response))
+        return new OperationResponse<Form>(getStatus(response))
                 .setResponse(response.getResponse());
 
     }
 
     @Override
-    public OperationResponse<User> create(@NonNull User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
+    public OperationResponse<Form> create(@NonNull Form form) {
+        User profile = sessionService.getPersonFromSession();
 
-        RepositoryResponse<User> response = repository.create(user);
 
-        return new OperationResponse<User>(getStatus(response))
+        RepositoryResponse<Form> response = repository.create(form);
+
+        return new OperationResponse<Form>(getStatus(response))
                 .setResponse(response.getResponse());
     }
 
     @Override
-    public OperationResponse<User> update(@NonNull User user) {
-        RepositoryResponse<User> response = repository.update(user);
+    public OperationResponse<Form> update(@NonNull Form form) {
+        RepositoryResponse<Form> response = repository.update(form);
 
-        return new OperationResponse<User>(getStatus(response))
+        return new OperationResponse<Form>(getStatus(response))
                 .setResponse(response.getResponse());
     }
 
     @Override
-    public OperationResponse<User> getById(@NonNull Long id) {
-        RepositoryResponse<User> response = repository.findById(id);
+    public OperationResponse<Form> getById(@NonNull Long id) {
+        RepositoryResponse<Form> response = repository.findById(id);
 
-        return new OperationResponse<User>(getStatus(response))
+        return new OperationResponse<Form>(getStatus(response))
                 .setResponse(response.getResponse());
     }
 
-    private OperationStatus getStatus(RepositoryResponse<User> response) {
+    private OperationStatus getStatus(RepositoryResponse<Form> response) {
         OperationStatus status;
         if(response.getStatus() == ProcessStatus.SUCCESS) {
 
