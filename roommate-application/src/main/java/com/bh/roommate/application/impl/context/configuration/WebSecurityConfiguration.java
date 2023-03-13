@@ -44,8 +44,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
             .antMatchers(HttpMethod.POST,"/api/v1/login").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/v1/login/{token}").permitAll()
             .antMatchers(HttpMethod.POST,"/api/v1/user").permitAll()
             .anyRequest().authenticated();
+
+        // TODO добавить фильтр на поле is_active_profile
 
         http.addFilterBefore(
             sessionFilter,

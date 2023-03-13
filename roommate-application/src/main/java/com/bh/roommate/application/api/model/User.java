@@ -36,4 +36,6 @@ public class User {
     private String phone;
 
     private String photo;
+
+    private Boolean isActiveProfile = false;
 }

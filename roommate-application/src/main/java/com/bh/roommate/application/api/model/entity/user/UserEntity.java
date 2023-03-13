@@ -1,6 +1,7 @@
 package com.bh.roommate.application.api.model.entity.user;
 
 import com.bh.roommate.application.api.model.entity.form.FormEntity;
+import com.bh.roommate.application.api.model.entity.token.TokenEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -44,6 +45,13 @@ public class UserEntity {
 
     private String photo;
 
+    private Boolean isActiveProfile = false;
+
+    // связи
+
     @OneToOne(mappedBy = "owner")
     private FormEntity form;
+
+    @OneToOne(mappedBy = "user")
+    private TokenEntity token;
 }
