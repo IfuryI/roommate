@@ -51,7 +51,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new User());
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -74,7 +74,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
                 UserEntity savedUser = repository.save(mapper.convertModelToEntity(user));
                 return new RepositoryResponse<>(ProcessStatus.SUCCESS, mapper.convertEntityToModel(savedUser));
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -104,7 +104,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new User());
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -123,7 +123,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, user);
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }

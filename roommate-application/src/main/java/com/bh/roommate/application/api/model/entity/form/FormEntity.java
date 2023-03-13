@@ -17,16 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Сущность анкеты пользователя в БД
@@ -35,7 +26,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "form")
+@Table(name = "forms")
 public class FormEntity {
 
     @Id
@@ -43,8 +34,7 @@ public class FormEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private UserEntity owner;
 
     private Boolean isHavePets;

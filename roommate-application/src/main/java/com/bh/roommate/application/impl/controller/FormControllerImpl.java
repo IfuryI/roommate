@@ -47,19 +47,19 @@ public class FormControllerImpl implements FormController {
     // private final UserValidateService validateService; для валидации сущности пользователя понадобится скорее всего
 
     @Override
-    @GetMapping("/{id}")
-    public ResponseEntity<OperationResponse<FormDto>> getForm(@PathVariable String id) {
+    @GetMapping("/{idUser}/{id}")
+    public ResponseEntity<OperationResponse<FormDto>> getForm(@PathVariable String id, @PathVariable String idUser) {
 
         if (StringUtils.isEmpty(id))
             return badRequest;
 
-        OperationResponse<FormDto> operationResponse = makeCall(() -> formService.getById(Long.parseLong(id)));
+        OperationResponse<FormDto> operationResponse = makeCall(() -> formService.getById(Long.parseLong(id), Long.parseLong(idUser)));
 
         return new ResponseEntity<>(operationResponse, operationResponse.getHttpStatus());
     }
 
     @Override
-    @PostMapping
+    @PostMapping("/{idUser}")
     public ResponseEntity<OperationResponse<FormDto>> createForm(@RequestBody FormDto formDto) {
 
         if (Objects.isNull(formDto))

@@ -34,7 +34,7 @@ public class SessionRepositoryServiceImpl implements SessionRepositoryService {
 
             return new RepositoryResponse<>(ProcessStatus.SUCCESS, sessionId);
 
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -60,7 +60,7 @@ public class SessionRepositoryServiceImpl implements SessionRepositoryService {
                 ProcessStatus.SUCCESS,
                 username
             );
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }

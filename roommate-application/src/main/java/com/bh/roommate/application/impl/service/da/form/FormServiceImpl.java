@@ -39,14 +39,13 @@ public class FormServiceImpl implements FormService {
 
         return new OperationResponse<Form>(getStatus(response))
                 .setResponse(response.getResponse());
-
     }
 
     @Override
     public OperationResponse<Form> create(@NonNull Form form) {
-        User profile = sessionService.getPersonFromSession();
+        User user = sessionService.getPersonFromSession();
 
-
+        form.setOwner(user);
         RepositoryResponse<Form> response = repository.create(form);
 
         return new OperationResponse<Form>(getStatus(response))
@@ -62,7 +61,7 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public OperationResponse<Form> getById(@NonNull Long id) {
+    public OperationResponse<Form> getById(@NonNull Long id, @NonNull Long idUser) {
         RepositoryResponse<Form> response = repository.findById(id);
 
         return new OperationResponse<Form>(getStatus(response))

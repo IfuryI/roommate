@@ -56,7 +56,7 @@ public class FormRepositoryServiceImpl implements FormRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new Form());
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -73,7 +73,7 @@ public class FormRepositoryServiceImpl implements FormRepositoryService {
             FormEntity savedForm = repository.save(mapper.convertModelToEntity(form));
             return new RepositoryResponse<>(ProcessStatus.SUCCESS, mapper.convertEntityToModel(savedForm));
 
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -103,7 +103,7 @@ public class FormRepositoryServiceImpl implements FormRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new Form());
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -122,7 +122,7 @@ public class FormRepositoryServiceImpl implements FormRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, form);
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }

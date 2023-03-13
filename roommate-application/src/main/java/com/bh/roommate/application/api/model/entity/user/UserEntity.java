@@ -1,16 +1,12 @@
 package com.bh.roommate.application.api.model.entity.user;
 
+import com.bh.roommate.application.api.model.entity.form.FormEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Сущность User в БД
@@ -47,4 +43,7 @@ public class UserEntity {
     private String phone;
 
     private String photo;
+
+    @OneToOne(mappedBy = "owner")
+    private FormEntity form;
 }

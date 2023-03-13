@@ -13,6 +13,6 @@ public interface FormService {
 
     OperationResponse<Form> update(@NonNull Form form);
 
-    OperationResponse<Form> getById(@NonNull Long id);
+    OperationResponse<Form> getById(@NonNull Long id, @NonNull Long idUser);
 
 }
