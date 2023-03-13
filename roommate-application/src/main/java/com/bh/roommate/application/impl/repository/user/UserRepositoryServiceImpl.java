@@ -1,7 +1,7 @@
 package com.bh.roommate.application.impl.repository.user;
 
 import com.bh.roommate.application.api.model.User;
-import com.bh.roommate.application.api.model.entity.UserEntity;
+import com.bh.roommate.application.api.model.entity.user.UserEntity;
 import com.bh.roommate.application.api.model.mapper.UserMapper;
 import com.bh.roommate.application.api.repository.user.UserRepository;
 import com.bh.roommate.application.api.repository.RepositoryResponse;
@@ -51,7 +51,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new User());
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -74,7 +74,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
                 UserEntity savedUser = repository.save(mapper.convertModelToEntity(user));
                 return new RepositoryResponse<>(ProcessStatus.SUCCESS, mapper.convertEntityToModel(savedUser));
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -104,7 +104,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new User());
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }
@@ -123,7 +123,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, user);
             }
-        } catch (Throwable exception) {
+        } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);
             throw exception;
         }

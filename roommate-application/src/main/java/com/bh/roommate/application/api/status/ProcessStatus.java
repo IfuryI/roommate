@@ -10,7 +10,9 @@ public enum ProcessStatus {
     ENTITY_IS_EXIST(10L, "Сущность уже существует", Severity.ERROR),
     ENTITY_IS_NOT_EXIST(20L, "Сущность не существует", Severity.ERROR),
 
-    ERROR(30L, "Непредвиденная ошибка процесса", Severity.ERROR),
+    SESSION_IS_NOT_EXIST(20L, "Сессия не существует", Severity.ERROR),
+
+    ERROR(-1L, "Непредвиденная ошибка процесса", Severity.ERROR),
 
     ;
 
