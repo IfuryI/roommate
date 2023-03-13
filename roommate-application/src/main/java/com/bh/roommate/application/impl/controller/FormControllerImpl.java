@@ -44,7 +44,7 @@ public class FormControllerImpl implements FormController {
                     1000000L
             )), HttpStatus.BAD_REQUEST);
 
-    // private final UserValidateService validateService; для валидации сущности пользователя понадобится скорее всего
+    // private final FormValidateService validateService; для валидации сущности анкеты понадобится скорее всего
 
     @Override
     @GetMapping("/{idUser}/{id}")
@@ -71,7 +71,7 @@ public class FormControllerImpl implements FormController {
     }
 
     @Override
-    @PutMapping("/{id}")
+    @PutMapping("/{idUser}/{id}")
     public ResponseEntity<OperationResponse<FormDto>> updateForm(@RequestBody FormDto formDto, @PathVariable String id) {
         if (StringUtils.isEmpty(id))
             return badRequest;
