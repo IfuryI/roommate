@@ -29,3 +29,15 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package -P dev
+
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.OMG_SECRET }}
+        port: 22
+        script: |
+         cd ~/home/backend
+         git pull origin release/mvp1
+         git status
