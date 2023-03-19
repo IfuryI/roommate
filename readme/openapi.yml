@@ -1,0 +1,316 @@
+openapi: 3.0.3
+info:
+  title: Swagger Roommate - OpenAPI 3.0
+  description: |-
+    This is a Roommate Server based on the OpenAPI 3.0 specification.
+  version: 1.0.0
+servers:
+  - url: https://roommate.swagger.io/api/v3
+tags:
+  - name: form
+    description: Анкета пользователя для поиска соседа
+    
+  - name: profile
+    description: Профиль пользователя
+    
+  - name: signup
+    description: Регистрация пользователя
+
+paths:
+  /form:
+    post:
+      tags:
+        - form
+      summary: Создание анкеты пользователя
+      operationId: updatePet
+      requestBody:
+        description: Структура анкеты
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/form'
+      responses:
+        '201':
+          description: Анкета сохранена
+        '403':
+          description: Не авторизован
+        '405':
+          description: Ошибка валидации
+        '500':
+          description: Ошибка сервиса
+    get:
+      tags:
+        - form
+      summary: Получение информации об анкете
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pets:
+                    items:
+                      $ref: '#/components/schemas/form'
+          description: "Объект анкета"
+        '500':
+          description: Ошибка сервиса
+  /formMeta:
+    get:
+      tags:
+        - form
+      summary: Получение мета-информации об анкете
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/form'
+                  smokeTypes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  languages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  lookingFor:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  currency:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  sleepingHabits:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  alcohol:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  isLikeGuests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  occupations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  householdModels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+                  meetingTypes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metaObject'
+          description: "Мета-объект"
+        '500':
+          description: Ошибка сервиса
+  /profile:
+    post:
+      tags:
+        - profile
+      summary: Создание профиля
+      requestBody:
+        description: Структура профиля
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/profile'
+      responses:
+        '201':
+          description: Профиль сохранен
+        '403':
+          description: Не авторизован
+        '405':
+          description: Ошибка валидации
+        '500':
+          description: Ошибка сервиса
+          
+    get:
+      tags:
+        - profile
+      summary: Получение профиля
+      responses:
+        '200':
+          description: Получение профиля
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/profile'
+        '403':
+          description: Не авторизован
+        '405':
+          description: Ошибка валидации
+        '500':
+          description: Ошибка сервиса
+          
+  /signup:
+    post:
+      tags:
+        - signup
+      summary: Создание аккаунта
+      requestBody:
+        description: Структура аккаунта
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/signup'
+      responses:
+        '201':
+          description: Аккаунт создан
+        '403':
+          description: Не авторизован
+        '405':
+          description: Ошибка валидации
+        '500':
+          description: Ошибка сервиса
+components:
+  schemas:
+    metaObject:
+      required:
+        - id
+        - value
+      type: object
+      properties:
+        id:
+          description: 'ID типа'
+          type: string
+          example: 1
+        value:
+          description: 'Название'
+          type: string
+          example: value
+    form:
+      type: object
+      properties:
+        isHavePets:
+          type: boolean
+          example: true
+        pets:
+          type: array
+          items:
+            type: string
+            example: 1
+        isSmoke:
+          type: boolean
+          example: true
+        smokeType:
+          type: array
+          items:
+            type: string
+            example: 1
+        languages:
+          type: array
+          items:
+            type: string
+            example: 1
+        userDescription:
+          type: string
+          example: Funny
+        lookingFor:
+          type: array
+          items:
+            type: string
+            example: 1
+        ageFrom:
+          type: string
+          format: int64
+          example: 20
+        ageTo:
+          type: string
+          format: int64
+          example: 28
+        isHaveApartment:
+          type: boolean
+          example: true
+        country:
+          type: string
+          example: 'russia'
+        city:
+          type: string
+          example: 'moscow'
+        priceFrom:
+          type: string
+          format: int64
+          example: 10000
+        priceTo:
+          type: string
+          format: int64
+          example: 100000
+        currency:
+          type: string
+          format: int64
+          example: 1
+        sleepingHabits:
+          type: string
+          format: int64
+          example: 1
+        alcohol:
+          type: string
+          format: int64
+          example: 1
+        isLikeGuests:
+          type: string
+          format: int64
+          example: 1
+        occupation:
+          type: string
+          format: int64
+          example: 1
+        householdModel:
+          type: string
+          format: int64
+          example: 1
+        isLikeSmookers:
+          type: boolean
+          example: true
+        meetingType:
+          type: string
+          format: int64
+          example: 1
+        
+    signup:
+      type: object
+      properties:
+        email:
+          type: string
+          example: 'mail@mail.ru'
+        password:
+          type: string
+          example: 'hash'
+          
+    profile:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: 'ivan'
+        lastName:
+          type: string
+          example: 'ivanov'
+        gender:
+          type: string
+          example: 1
+        birthday:
+          type: string
+          example: '19.04.2004'
+        phone:
+          type: string
+          example: '79279782244'
+        photo:
+          type: string
+          example: '/photo/123'
+
+
+
+
+    

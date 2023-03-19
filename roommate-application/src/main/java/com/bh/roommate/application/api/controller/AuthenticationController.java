@@ -11,4 +11,6 @@ public interface AuthenticationController {
 
     ResponseEntity<OperationResponse<String>> login(UserDto userDto);
 
+    ResponseEntity<OperationResponse<String>> checkToken(String token);
+
 }

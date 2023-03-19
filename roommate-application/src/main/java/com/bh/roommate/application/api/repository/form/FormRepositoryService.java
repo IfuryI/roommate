@@ -28,5 +28,7 @@ public interface FormRepositoryService {
      */
     RepositoryResponse<Form> findById(@NonNull Long id);
 
+    RepositoryResponse<List<Form>> findAll();
+
     RepositoryResponse<Form> update(@NonNull Form form);
 }

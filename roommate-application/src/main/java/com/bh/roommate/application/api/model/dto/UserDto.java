@@ -21,8 +21,6 @@ public class UserDto implements Serializable {
 
     private Long id;
 
-    private FormDto form;
-
     private String email;
 
     private String password;

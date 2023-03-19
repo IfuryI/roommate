@@ -36,11 +36,14 @@ public class SessionFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException {
         final String sessionId = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        // 1. Если в заголовке не найден идентификатор сессии
         if (sessionId == null || sessionId.length() == 0) {
             chain.doFilter(request, response);
             return;
         }
 
+        // 2. Ищем логин по идентификатору сессии
         final RepositoryResponse<String> repositoryResponse = sessionRepositoryService.findUsernameBySessionId(sessionId);
 
         String username = repositoryResponse.getResponse();
@@ -49,7 +52,15 @@ public class SessionFilter extends OncePerRequestFilter {
             return;
         }
 
+        // 3. Получаем информацию о пользователе по логину
         final CustomUserDetails customUserDetails = customUserDetailsService.loadUserByUsername(username);
+
+        // 3.1 Аккаунт не активирован
+        if (!customUserDetails.isEnabled()) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         final UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
             customUserDetails,
             null,
