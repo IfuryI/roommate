@@ -52,6 +52,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: 22
-        script: |
+        run: |
           docker pull zhigalkin/roommate:latest
           nohup docker run --publish 8080:8080 zhigalkin/roommate:latest &
