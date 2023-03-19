@@ -55,7 +55,7 @@ jobs:
         port: 22
         script: |
           docker pull zhigalkin/roommate:latest
-          docker stop roommate
-          docker rm roommate
-          docker run --name roommate --publish 8080:8080 zhigalkin/roommate:latest
-          docker ps -a
+          docker-compose stop roommate-app
+          docker rm roommate-app
+          docker-compose up -d roommate-app
+          docker ps

@@ -1,12 +1,14 @@
 version: '3'
 services:
-  app:
-    build: .
+  roommate-app:
+    container_name: roommate-app
+    image: "zhigalkin/roommate"
     ports:
      - "8080:8080"
     links:
       - redis
   redis:
+    container_name: redis-cache
     image: redis
     ports:
      - "6379:6379"
