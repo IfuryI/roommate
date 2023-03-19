@@ -1,16 +1,15 @@
 {
 	"info": {
-		"_postman_id": "c334158a-60da-41a3-83d2-869ca26c10a2",
+		"_postman_id": "df2db432-696f-4d9d-bfd7-db6b86a90dea",
 		"name": "roommate",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19708525"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "local",
 			"item": [
 				{
-					"name": "Получить пользователя",
+					"name": "Получить пользователя по идентификатору",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -37,7 +36,7 @@
 					"response": []
 				},
 				{
-					"name": "Активировать УЗ",
+					"name": "Активировать учетную запись",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -48,7 +47,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/api/v1/login/{token}",
+							"raw": "localhost:8080/api/v1/login/2cf4f922-398e-4bc6-b86a-40ccd8314d27",
 							"host": [
 								"localhost"
 							],
@@ -57,7 +56,7 @@
 								"api",
 								"v1",
 								"login",
-								"{token}"
+								"2cf4f922-398e-4bc6-b86a-40ccd8314d27"
 							]
 						}
 					},
@@ -70,7 +69,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{email}\",\n    \"password\": \"fghju76trf\",\n    \"role\": \"USER_ROLE\",\n    \"firstName\": \"ivan\",\n    \"lastName\": \"ivanovvv\",\n    \"gender\": \"FEMALE\",\n    \"birthday\": \"1999-04-12\",\n    \"phone\": \"79275641122\",\n    \"photo\": \"photo/12363\"\n}",
+							"raw": "{\n    \"email\": \"shigalkin@mail.ru\",\n    \"password\": \"fghju76trf\",\n    \"role\": \"USER_ROLE\",\n    \"firstName\": \"ivan\",\n    \"lastName\": \"ivanovvv\",\n    \"gender\": \"FEMALE\",\n    \"birthday\": \"1999-04-12\",\n    \"phone\": \"79275641122\",\n    \"photo\": \"photo/12363\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -99,7 +98,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "MzllMDBjZjAtZjIyMS00MTk1LTkyZjctMWUwNzdjM2Q2YmVk",
+								"value": "ZDFlNGE2MzYtMDFlNy00MjkxLThiNWEtMDdlNTZlZmRhOTEw",
 								"type": "default"
 							}
 						],
@@ -129,12 +128,12 @@
 					"response": []
 				},
 				{
-					"name": "Получить анкету",
+					"name": "Получить анкету по идентификатору",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/v1/form/1",
+							"raw": "localhost:8080/api/v1/form/3",
 							"host": [
 								"localhost"
 							],
@@ -143,7 +142,7 @@
 								"api",
 								"v1",
 								"form",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -156,7 +155,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{email}\",\n    \"password\": \"fghju76trf\"\n}",
+							"raw": "{\n    \"email\": \"shigalkin@mail.ru\",\n    \"password\": \"fghju76trf\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,23 +176,86 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "test",
-			"item": [
+				},
 				{
-					"name": "Получить пользователя",
+					"name": "Получить все анкеты",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "NjE3Y2I0NDctZjBhNC00MWJjLTk4MDUtNThhNzE2NjVmZDQ2",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/v1/form",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"form"
+							]
 						}
 					},
 					"response": []
 				},
+				{
+					"name": "Получить данные об авторизованном пользователе",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "NjE3Y2I0NDctZjBhNC00MWJjLTk4MDUtNThhNzE2NjVmZDQ2",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получить анкету авторизованного пользователя",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/form/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"form",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dev",
+			"item": [
 				{
 					"name": "Создать пользователя",
 					"request": {
@@ -201,7 +263,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"dima\",\n    \"email\": \"dimaaaaaa@gmail.ru\"\n}",
+							"raw": "{\n    \"email\": \"YOUR.EMAIL@mail.ru\",\n    \"password\": \"fghju76trf\",\n    \"role\": \"USER_ROLE\",\n    \"firstName\": \"ivan\",\n    \"lastName\": \"ivanovvv\",\n    \"gender\": \"FEMALE\",\n    \"birthday\": \"1999-04-12\",\n    \"phone\": \"79275641122\",\n    \"photo\": \"photo/12363\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -209,18 +271,197 @@
 							}
 						},
 						"url": {
-							"raw": "roommate-rest-api-env.eba-vhc3a223.eu-west-2.elasticbeanstalk.com/api/v1/user",
+							"raw": "194.58.109.74:8080/api/v1/user",
 							"host": [
-								"roommate-rest-api-env",
-								"eba-vhc3a223",
-								"eu-west-2",
-								"elasticbeanstalk",
-								"com"
+								"194",
+								"58",
+								"109",
+								"74"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
 								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать сессию",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"YOUR.EMAIL@mail.ru\",\n    \"password\": \"fghju76trf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "194.58.109.74:8080/api/v1/login",
+							"host": [
+								"194",
+								"58",
+								"109",
+								"74"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Активировать учетную запись",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "194.58.109.74:8080/api/v1/login/1e9b6164-0cff-4a61-9b89-7bf96c47ee0f",
+							"host": [
+								"194",
+								"58",
+								"109",
+								"74"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"login",
+								"1e9b6164-0cff-4a61-9b89-7bf96c47ee0f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создать анкету",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ODQ4ZDcxMjYtZjk3Ni00OTBiLWFlZTgtN2Y1ZGQ1MmVjNTRk",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isHavePets\": true,\n  \"petTypes\": [\n    \"1\", \"2\"\n  ],\n  \"isSmoke\": true,\n  \"smokeTypes\": [\n    \"1\"\n  ],\n  \"languageTypes\": [\n    \"1\"\n  ],\n  \"aboutMe\": \"Funny\",\n  \"contactTypes\": [\n    \"1\"\n  ],\n  \"ageFrom\": \"20\",\n  \"ageTo\": \"28\",\n  \"isHaveApartment\": true,\n  \"country\": \"russia\",\n  \"city\": \"moscow\",\n  \"priceFrom\": \"10000\",\n  \"priceTo\": \"100000\",\n  \"currency\": \"1\",\n  \"sleepingHabits\": \"1\",\n  \"alcoholic\": \"1\",\n  \"guests\": \"1\",\n  \"occupation\": \"1\",\n  \"householdType\": \"1\",\n  \"likeSmokers\": true,\n  \"meetingType\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "194.58.109.74:8080/api/v1/form/1",
+							"host": [
+								"194",
+								"58",
+								"109",
+								"74"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"form",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получить пользователя по идентификатору",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ODQ4ZDcxMjYtZjk3Ni00OTBiLWFlZTgtN2Y1ZGQ1MmVjNTRk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "194.58.109.74:8080/api/v1/user/3",
+							"host": [
+								"194",
+								"58",
+								"109",
+								"74"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получить все анкеты",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "NjE3Y2I0NDctZjBhNC00MWJjLTk4MDUtNThhNzE2NjVmZDQ2",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "194.58.109.74:8080/api/v1/form",
+							"host": [
+								"194",
+								"58",
+								"109",
+								"74"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"form"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получить анкету по идентификатору",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "194.58.109.74:8080/api/v1/form/3/5",
+							"host": [
+								"194",
+								"58",
+								"109",
+								"74"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"form",
+								"3",
+								"5"
 							]
 						}
 					},
