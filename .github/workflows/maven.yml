@@ -52,6 +52,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: 22
-
-#        source: "roommate-application.jar"
-#        target: "~/source"
+        script: |
+          docker pull zhigalkin/roommate:latest
+          docker run --publish 8080:8080 zhigalkin/roommate:latest
