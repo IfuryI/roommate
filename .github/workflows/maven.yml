@@ -37,7 +37,20 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: 22
+        source: "roommate-application.jar"
+        target: "~/source"
+    - name: Start service
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: 22
         script: |
-         cd ~/home/backend
-         git pull origin release/mvp1
-         git status
+          sudo /etc/init.d/roommate-application stop
+          mv ~/source/roommate-application.jar ~/source/roommate-application-old.jar
+          mv ~/source/roommate-application-latest.jar ~/source/roommate-application.jar
+          sudo rm -rf /etc/init.d/roommate-application
+          sudo ln -s -f ~/source/roommate-application.jar /etc/init.d/roommate-application
+          sudo /etc/init.d/roommate-application start
+          rm ~/source/roommate-application-old.jar
