@@ -7,4 +7,5 @@ ADD roommate-application/target/roommate-application.jar roommate-application.ja
 
 EXPOSE 8080
 
+
 ENTRYPOINT ["java", "-Dspring.mail.username=${EMAIL}", "-Dspring.mail.password=${PASSWORD}" ,"-jar", "roommate-application.jar"]
