@@ -54,4 +54,4 @@ jobs:
         port: 22
         script: |
           docker pull zhigalkin/roommate:latest
-          docker run --publish 8080:8080 zhigalkin/roommate:latest
+          nohup docker run --publish 8080:8080 zhigalkin/roommate:latest &
