@@ -2,9 +2,7 @@ package com.bh.roommate.application.impl.controller;
 
 import com.bh.roommate.application.api.controller.FormController;
 import com.bh.roommate.application.api.model.Form;
-import com.bh.roommate.application.api.model.User;
 import com.bh.roommate.application.api.model.dto.FormDto;
-import com.bh.roommate.application.api.model.dto.UserDto;
 import com.bh.roommate.application.api.model.mapper.FormMapper;
 import com.bh.roommate.application.api.service.da.OperationResponse;
 import com.bh.roommate.application.api.service.da.form.FormService;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -54,6 +53,19 @@ public class FormControllerImpl implements FormController {
             return badRequest;
 
         OperationResponse<FormDto> operationResponse = makeCall(() -> formService.getById(Long.parseLong(id), Long.parseLong(idUser)));
+
+        return new ResponseEntity<>(operationResponse, operationResponse.getHttpStatus());
+    }
+
+    @Override
+    @GetMapping
+    public ResponseEntity<OperationResponse<List<FormDto>>> getAllForms() {
+
+        OperationResponse<List<Form>> response = formService.getAll();
+
+        var operationResponse = new OperationResponse<List<FormDto>>(response.getStatus())
+            .setResponse(mapper.convertListModelToListDto(response.getResponse()))
+            .setHttpStatus(HttpStatus.OK);
 
         return new ResponseEntity<>(operationResponse, operationResponse.getHttpStatus());
     }

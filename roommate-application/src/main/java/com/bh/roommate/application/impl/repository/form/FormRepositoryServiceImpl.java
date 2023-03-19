@@ -20,6 +20,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 @Repository
@@ -102,6 +104,33 @@ public class FormRepositoryServiceImpl implements FormRepositoryService {
                 log.warn(String.format("Анкета с id = %s не найдена", id));
 
                 return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, new Form());
+            }
+        } catch (Exception exception) {
+            log.error("Ошибка выполнения процесса:\n", exception);
+            throw exception;
+        }
+    }
+
+    @Override
+    public RepositoryResponse<List<Form>> findAll() {
+        try {
+            final Iterable<FormEntity> formEntityIterable = repository.findAll();
+
+            if (formEntityIterable.iterator().hasNext()) {
+
+                List<FormEntity> formEntityList = StreamSupport
+                    .stream(formEntityIterable.spliterator(), false)
+                    .collect(Collectors.toList());
+
+                return new RepositoryResponse<>(
+                    ProcessStatus.SUCCESS,
+                    mapper.convertListEntityToListModel(formEntityList)
+                );
+
+            } else {
+                log.warn("Анкеты не найдены");
+
+                return new RepositoryResponse<>(ProcessStatus.ENTITY_IS_NOT_EXIST, List.of());
             }
         } catch (Exception exception) {
             log.error("Ошибка выполнения процесса:\n", exception);

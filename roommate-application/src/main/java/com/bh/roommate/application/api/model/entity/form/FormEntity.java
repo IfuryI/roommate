@@ -34,7 +34,7 @@ public class FormEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", unique = true)
     private UserEntity owner;
 
     private Boolean isHavePets;
