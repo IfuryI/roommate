@@ -36,7 +36,7 @@ jobs:
       with:
         build-args: |
           EMAIL=${{ secrets.EMAIL }}
-          PASSWORD=${{ secrets.PASSWORD }
+          PASSWORD=${{ secrets.PASSWORD }}
 
         image: zhigalkin/roommate
         tags: latest
