@@ -54,6 +54,7 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: |
+          cd /home/backend
           docker pull zhigalkin/roommate:latest
           docker-compose stop roommate-app
           docker rm roommate-app
