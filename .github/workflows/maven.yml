@@ -56,4 +56,5 @@ jobs:
         script: |
           docker pull zhigalkin/roommate:latest
           docker stop roommate
+          docker rm roommate
           docker run --name roommate --publish 8080:8080 zhigalkin/roommate:latest
