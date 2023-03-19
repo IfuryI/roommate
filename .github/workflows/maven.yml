@@ -34,6 +34,10 @@ jobs:
     - name: Push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
+        build-args: |
+          EMAIL=${{ secrets.EMAIL }}
+          PASSWORD=${{ secrets.PASSWORD }
+
         image: zhigalkin/roommate
         tags: latest
         registry: docker.io
