@@ -88,7 +88,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
                 tokenRepository.save(token);
 
                 // отправляем письмо со ссылкой-токеном
-                mailService.send(savedUser.getEmail(), "Подтверждение регистрации на сайте Roommate", createUri(token.getToken()));
+                //mailService.send(savedUser.getEmail(), "Подтверждение регистрации на сайте Roommate", createUri(token.getToken()));
 
                 // TODO(вынести все говно выше по отправке сообщения в САЗ, чтобы пользователь на форме регистрации не ждал отправки письма)
                 return new RepositoryResponse<>(ProcessStatus.SUCCESS, mapper.convertEntityToModel(savedUser));
